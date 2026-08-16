@@ -58,3 +58,6 @@ next_button = tk.Button(root, text="next", command="") # "next"button  goes to n
 next_button.pack(side=tk.LEFT, padx=5)
 
 root.mainloop() # keeps the app running on a loop and refreshes after user input
+
+
+# just adding this for the sake of learning git
