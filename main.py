@@ -24,16 +24,6 @@ def play_song():
     playing_song = select_song()
     music.load(playing_song)
     music.play()
-
-def pause_song():
-    """pauses the song"""
-
-    music.pause()
-
-def unpause_song():
-    """unpauses the song"""
-
-    music.unpause()
     
 def access_music_files(): 
     """ Used to access all mp3 files in the path """
@@ -73,10 +63,10 @@ play_button.pack(side=tk.LEFT, padx=5)
 next_button = tk.Button(root, text="next", command="") # "next"button  goes to next song on the list if there is
 next_button.pack(side=tk.LEFT, padx=5)
 
-pause_button = tk.Button(root, text="pause", command=pause_song) # "pause" button  pauses the song
+pause_button = tk.Button(root, text="pause", command=pygame.mixer_music.pause) # "pause" button  pauses the song
 pause_button.pack(side=tk.LEFT, padx=5)
 
-unpause_button = tk.Button(root, text="unpause", command=unpause_song) # "unpause" button  unpauses the song
+unpause_button = tk.Button(root, text="unpause", command=pygame.mixer_music.unpause) # "unpause" button  unpauses the song
 unpause_button.pack(side=tk.LEFT, padx=5)
 
 root.mainloop() # keeps the app running on a loop and refreshes after user input
