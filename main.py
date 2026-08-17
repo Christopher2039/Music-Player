@@ -20,6 +20,30 @@ def play_song():
         current_index = selection[0]
         music.load(song_path_list[current_index])
         music.play()
+
+def next_song():
+    """plays next song"""
+
+    global current_index ## whatever change is made within this func will be global and affect the current_index variable
+    if current_index is None:
+        return
+
+    current_index += 1
+
+    music.load(song_path_list[current_index])
+    music.play()
+
+def prev_song():
+    """plays previous song"""
+
+    global current_index
+    if current_index is None:
+        return
+    
+    current_index -= 1
+    
+    music.load(song_path_list[current_index])
+    music.play()
     
 def access_music_files(): 
     """ Used to access all mp3 files in the path """
@@ -50,13 +74,13 @@ for songs in all_songs: # adds the songs to the list box and the list
 quit_button = tk.Button(root, text="quit", command=root.destroy) # "quit" button  Closes the app
 quit_button.pack(side=tk.LEFT, padx=5)
 
-previous_button = tk.Button(root, text="previous", command="") # "previous" button  goes to previous song on the list if there is
+previous_button = tk.Button(root, text="previous", command=prev_song) # "previous" button  goes to previous song on the list if there is
 previous_button.pack(side=tk.LEFT, padx=5)
 
 play_button = tk.Button(root, text="play", command=play_song) # "play" button  plays a selected song
 play_button.pack(side=tk.LEFT, padx=5)
 
-next_button = tk.Button(root, text="next", command="") # "next"button  goes to next song on the list if there is
+next_button = tk.Button(root, text="next", command=next_song) # "next"button  goes to next song on the list if there is
 next_button.pack(side=tk.LEFT, padx=5)
 
 pause_button = tk.Button(root, text="pause", command=pygame.mixer_music.pause) # "pause" button  pauses the song
