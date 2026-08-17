@@ -9,21 +9,17 @@ music = pygame.mixer_music # to load and play music
 
 song_path_list = [] # Stores the song path in a list
 
-def select_song():
-    """ Selecting song index and returning the path to the selected song """
-
-    list_box_index = song_list_box.curselection() # stores the index of the selected song
-    if list_box_index:
-        song = list_box_index[0] # index of the selected song
-        selected_song_path = song_path_list[song]
-        return selected_song_path
+current_index = None # tracks the index of the song currently loaded/playing
 
 def play_song():
-    """plays the songs"""
+    """plays the song"""
 
-    playing_song = select_song()
-    music.load(playing_song)
-    music.play()
+    global current_index
+    selection = song_list_box.curselection()
+    if selection:
+        current_index = selection[0]
+        music.load(song_path_list[current_index])
+        music.play()
     
 def access_music_files(): 
     """ Used to access all mp3 files in the path """
