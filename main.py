@@ -5,7 +5,7 @@ from pathlib import Path
 import pygame
 pygame.mixer.init()
 
-music = pygame.mixer.Channel # to load and play music
+music = pygame.mixer_music # to load and play music
 
 song_path_list = [] # Stores the song path in a list
 
@@ -18,6 +18,12 @@ def select_song():
         selected_song_path = song_path_list[song]
         return selected_song_path
 
+def play_song():
+    """plays the songs"""
+
+    playing_song = select_song()
+    music.load(playing_song)
+    music.play()
     
 def access_music_files(): 
     """ Used to access all mp3 files in the path """
@@ -51,7 +57,7 @@ quit_button.pack(side=tk.LEFT, padx=5)
 previous_button = tk.Button(root, text="previous", command="") # "previous" button  goes to previous song on the list if there is
 previous_button.pack(side=tk.LEFT, padx=5)
 
-play_button = tk.Button(root, text="play", command="") # "play" button  plays a selected song
+play_button = tk.Button(root, text="play", command=play_song) # "play" button  plays a selected song
 play_button.pack(side=tk.LEFT, padx=5)
 
 next_button = tk.Button(root, text="next", command="") # "next"button  goes to next song on the list if there is
